@@ -6,7 +6,7 @@ def readFile(filename):
     for line in f:
         line = line.strip()
         line = line.split(' ')
-        vertex = Vertex(line[0], line[1], line[2])
+        vertex = Vertex(int(line[0]), float(line[1]), float(line[2]))
         vertexes.append(vertex)
     return vertexes
 
