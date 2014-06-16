@@ -7,6 +7,7 @@ sys.path.append("Algorithms/")
 from tspMst import TspMst
 from tspNn import TspNn
 from tsp2Opt import Tsp2Opt
+from tsp3Opt import Tsp3Opt
 
 def readFile(filename):
     vertexes = []
@@ -49,6 +50,14 @@ def main():
         tsp2Opt = Tsp2Opt(tspNn.trip, G)
         tsp2Opt.execute()
         tsp2Opt.nt.printTrip()
+    
+    elif alg == "tsp-nn-3opt":
+        tspNn = TspNn(G)
+        tspNn.execute()
+        G = Graph(vertexes)
+        tsp3Opt = Tsp3Opt(tspNn.trip, G)
+        tsp3Opt.execute()
+        tsp3Opt.nt.printTrip()
         
 
 if __name__ == "__main__":

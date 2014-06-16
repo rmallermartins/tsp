@@ -28,7 +28,7 @@ class Tsp2Opt:
                     if c != n:
                         d = c+1
                     else:
-                        d = 1
+                        d = 0
                     
                     variation = self.w[self.t.trip[a]-1][self.t.trip[b]-1] + self.w[self.t.trip[c]-1][self.t.trip[d]-1] \
                                 - self.w[self.t.trip[a]-1][self.t.trip[c]-1] - self.w[self.t.trip[b]-1][self.t.trip[d]-1]
@@ -45,7 +45,7 @@ class Tsp2Opt:
             else:
                 self.calculateNewTrip()
                 break
-
+    
     def calculateNewTrip(self):
         for v in self.t.trip:
             self.nt.addVertex(self.G.V[v-1])
