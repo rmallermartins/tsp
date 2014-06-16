@@ -5,5 +5,5 @@ class Vertex:
         self.n = nInt
         self.x = xReal
         self.y = yReal
-        self.pi = None
+        self.pi = []
         self.key = maxint

@@ -1,4 +1,12 @@
 import sys
+sys.path.append("Structures/")
+from graph import Graph
+from trip import Trip
+from vertex import Vertex
+sys.path.append("Algorithms/")
+from tspMst import TspMst
+from tspNn import TspNn
+from tsp2Opt import Tsp2Opt
 
 def readFile(filename):
     vertexes = []
@@ -11,13 +19,37 @@ def readFile(filename):
     return vertexes
 
 def main():
-    filename = argv[2]
-    alg = argv[1]
+    filename = sys.argv[2]
+    alg = sys.argv[1]
     
     vertexes = readFile(filename)
-    graph = Graph(vertexes)
+    G = Graph(vertexes)
     
+    if alg == "tsp-mst":
+        tspMst = TspMst(G)
+        tspMst.execute()
+        tspMst.trip.printTrip()
     
+    elif alg == "tsp-nn":
+        tspNn = TspNn(G)
+        tspNn.execute()
+        tspNn.trip.printTrip()
+    
+    elif alg == "tsp-mst-2opt":
+        tspMst = TspMst(G)
+        tspMst.execute()
+        tsp2Opt = Tsp2Opt(tspMst.trip, G)
+        tsp2Opt.execute()
+        tsp2Opt.nt.printTrip()
+    
+    elif alg == "tsp-nn-2opt":
+        tspNn = TspNn(G)
+        tspNn.execute()
+        G = Graph(vertexes)
+        tsp2Opt = Tsp2Opt(tspNn.trip, G)
+        tsp2Opt.execute()
+        tsp2Opt.nt.printTrip()
+        
 
 if __name__ == "__main__":
     main()

@@ -1,16 +1,28 @@
-import heapq
+from sys import maxint
 
 class MstPrim:
-    def __init__(self, G):
+    def __init__(self, G, r):
         self.G = G
-        self.r = G.V["0"]
-        self.r.key = 0
+        self.r = r
         self.Q = []
-        for key, v in G.V.iteritems()
-            heapq.heappush(Q, (v.key, v.n, v))
         
     def execute(self):
+        self.r.key = 0
+        for v in self.G.V:
+            self.Q.append(v)
+            
         while self.Q:
-            (key1, n1, u) = heapq.heappop(self.Q)
-            for (key2, n2, v) in self.Q:
-                if self.G.m[n1, n2]
+            u = self.extractMin()
+            for v in self.Q:
+                if self.G.m[u.n-1][v.n-1] < v.key:
+                    v.pi = u
+                    v.key = self.G.m[u.n-1][v.n-1]
+
+    def extractMin(self):
+        Min = maxint
+        for v in self.Q:
+            if v.key < Min:
+                vMin = v
+                Min = v.key
+        self.Q.remove(vMin)
+        return vMin
